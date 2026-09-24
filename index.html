@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CQ CQ CQ! A fun, hands-on guide to amateur (ham) radio — bands, Morse code, the phonetic alphabet, and how to get licensed." />
+  <title>CQ Ham Radio — Your Fun Guide to Amateur Radio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📻</text></svg>" />
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-icon">📻</span>
+      <span class="brand-text">CQ<span class="brand-accent">Ham</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#what">What is it?</a>
+      <a href="#bands">Bands</a>
+      <a href="#morse">Morse</a>
+      <a href="#phonetic">Phonetics</a>
+      <a href="#qcodes">Q-Codes</a>
+      <a href="#propagation">Propagation</a>
+      <a href="#repeaters">Repeaters</a>
+      <a href="#license">Get Licensed</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="kicker">CQ CQ CQ — is anybody out there?</p>
+        <h1>Talk to the world<br />with a wire and a wave.</h1>
+        <p class="lede">
+          Amateur radio lets ordinary people bounce their voices off the
+          ionosphere, chat with astronauts, and send messages when the
+          internet is down. No subscription. No cell towers. Just physics,
+          curiosity, and a callsign.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#license">Start your journey →</a>
+          <a class="btn btn-ghost" href="#morse">Try Morse code</a>
+        </div>
+
+        <div class="signal-widget" role="img" aria-label="Animated radio signal">
+          <div class="tower">
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="wave"></span>
+            <span class="mast"></span>
+          </div>
+          <p class="signal-caption">Signal strength: <strong id="sMeter">S9+</strong> · 73!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUN FACT TICKER -->
+    <section class="ticker" aria-label="Fun facts">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- populated by JS, with a static fallback -->
+        <span>📡 There are over 3 million licensed hams worldwide.</span>
+        <span>🛰️ Astronauts on the ISS chat with hams using callsign NA1SS.</span>
+        <span>🌩️ Hams provide emergency comms when everything else fails.</span>
+      </div>
+    </section>
+
+    <!-- WHAT IS IT -->
+    <section id="what" class="section">
+      <div class="section-head">
+        <h2>What <em>is</em> ham radio?</h2>
+        <p>Not the deli meat. It's a global hobby and public service.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-emoji">🌍</div>
+          <h3>Global reach</h3>
+          <p>On the right band at the right time, a modest station can reach the
+             other side of the planet — no infrastructure required.</p>
+        </article>
+        <article class="card">
+          <div class="card-emoji">🆘</div>
+          <h3>Emergency ready</h3>
+          <p>When storms knock out cell and power, hams relay critical messages
+             for hospitals, shelters, and responders.</p>
+        </article>
+        <article class="card">
+          <div class="card-emoji">🔧</div>
+          <h3>Learn by doing</h3>
+          <p>Build antennas, solder circuits, and understand the invisible
+             waves buzzing all around you.</p>
+        </article>
+        <article class="card">
+          <div class="card-emoji">🛰️</div>
+          <h3>Space capable</h3>
+          <p>Bounce signals off the moon, track weather satellites, or work
+             the International Space Station.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- BANDS -->
+    <section id="bands" class="section section-alt">
+      <div class="section-head">
+        <h2>Ride the bands 🌊</h2>
+        <p>Different frequencies behave differently. Tap a band to learn its personality.</p>
+      </div>
+      <div class="band-grid" id="bandGrid" role="list"></div>
+      <p class="band-detail" id="bandDetail" aria-live="polite">
+        👆 Pick a band above to see what it's good for.
+      </p>
+    </section>
+
+    <!-- MORSE -->
+    <section id="morse" class="section">
+      <div class="section-head">
+        <h2>Speak in dots &amp; dashes</h2>
+        <p>Type anything and translate it to Morse code — with sound and blinking light.</p>
+      </div>
+      <div class="morse-box">
+        <label class="morse-label" for="morseInput">Your message</label>
+        <input id="morseInput" type="text" maxlength="120" placeholder="HELLO WORLD" autocomplete="off" />
+        <div class="morse-output" id="morseOutput" aria-live="polite">.... . .-.. .-.. ---   .-- --- .-. .-.. -..</div>
+        <div class="morse-controls">
+          <button class="btn btn-primary" id="playMorse" type="button">▶ Play</button>
+          <button class="btn btn-ghost" id="stopMorse" type="button">■ Stop</button>
+          <label class="wpm">
+            Speed
+            <input id="wpm" type="range" min="5" max="30" value="15" />
+            <span id="wpmVal">15 WPM</span>
+          </label>
+        </div>
+        <div class="lamp" id="lamp" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- PHONETIC -->
+    <section id="phonetic" class="section section-alt">
+      <div class="section-head">
+        <h2>Say it clearly: the NATO phonetic alphabet</h2>
+        <p>"Was that a B or a D?" Hams spell with words. Type your callsign or name.</p>
+      </div>
+      <div class="phonetic-box">
+        <input id="phoneticInput" type="text" maxlength="40" placeholder="W1AW" autocomplete="off" />
+        <div class="phonetic-output" id="phoneticOutput" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Q-CODES -->
+    <section id="qcodes" class="section">
+      <div class="section-head">
+        <h2>Q-codes: three letters, big meaning</h2>
+        <p>Radio shorthand from the telegraph era. Search the cheat sheet below.</p>
+      </div>
+      <div class="qcode-box">
+        <input id="qcodeSearch" type="text" placeholder="Search: QTH, weak signal, location…" autocomplete="off" aria-label="Search Q-codes" />
+        <div class="qcode-table" id="qcodeTable" role="list"></div>
+        <p class="qcode-empty" id="qcodeEmpty" hidden>No Q-codes match that. Try "QSL" or "fading".</p>
+      </div>
+    </section>
+
+    <!-- PROPAGATION -->
+    <section id="propagation" class="section section-alt">
+      <div class="section-head">
+        <h2>Space weather &amp; propagation ☀️</h2>
+        <p>The Sun decides who you can hear. Here's how to read the conditions.</p>
+      </div>
+
+      <div class="prop-grid">
+        <div class="prop-gauge">
+          <div class="gauge-val" id="sfiVal">—</div>
+          <div class="gauge-label">Solar Flux (SFI)</div>
+          <p class="gauge-hint">Higher = better high-band DX. ~70 quiet, 150+ excellent.</p>
+        </div>
+        <div class="prop-gauge">
+          <div class="gauge-val" id="kVal">—</div>
+          <div class="gauge-label">K-index</div>
+          <p class="gauge-hint">Geomagnetic activity. 0–2 calm, 5+ = storms that wreck HF.</p>
+        </div>
+        <div class="prop-gauge">
+          <div class="gauge-val" id="aVal">—</div>
+          <div class="gauge-label">A-index</div>
+          <p class="gauge-hint">A daily roll-up of geomagnetic activity. Lower is better.</p>
+        </div>
+      </div>
+
+      <div class="prop-panel">
+        <div class="prop-panel-head">
+          <h3>Right now near you <span id="propClock" class="prop-clock"></span></h3>
+          <p>A quick day/night guide computed from your local time — not live solar data.</p>
+        </div>
+        <div class="band-conditions" id="bandConditions" role="list"></div>
+        <p class="prop-note">
+          🛰️ Want the real numbers? Check live space weather at
+          <a href="https://www.hamqsl.com/solar.html" target="_blank" rel="noopener">hamqsl.com</a>
+          or <a href="https://www.swpc.noaa.gov/" target="_blank" rel="noopener">NOAA SWPC</a>.
+          The gauges above show illustrative typical values.
+        </p>
+      </div>
+    </section>
+
+    <!-- REPEATERS -->
+    <section id="repeaters" class="section">
+      <div class="section-head">
+        <h2>Find a repeater 🗼</h2>
+        <p>Repeaters extend your handheld's range for miles. Search this sample list.</p>
+      </div>
+      <div class="repeater-box">
+        <div class="repeater-filters">
+          <input id="repeaterSearch" type="text" placeholder="Search city, state, or callsign…" autocomplete="off" aria-label="Search repeaters" />
+          <select id="repeaterBand" aria-label="Filter by band">
+            <option value="">All bands</option>
+            <option value="2m">2m (VHF)</option>
+            <option value="70cm">70cm (UHF)</option>
+          </select>
+        </div>
+        <div class="repeater-list" id="repeaterList" role="list"></div>
+        <p class="repeater-empty" id="repeaterEmpty" hidden>No repeaters match. Try clearing the filters.</p>
+        <p class="prop-note">
+          📖 This is a small illustrative sample. For a full, up-to-date directory
+          see <a href="https://www.repeaterbook.com/" target="_blank" rel="noopener">RepeaterBook</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- LICENSE -->
+    <section id="license" class="section">
+      <div class="section-head">
+        <h2>Get on the air: your first license</h2>
+        <p>In the US it's three levels. You can start today.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Study Technician</h3>
+            <p>The entry class. ~35 questions from a public pool. Free apps and
+               sites like HamStudy make it painless.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Take the exam</h3>
+            <p>Volunteer Examiners (VEs) run in-person and online sessions.
+               Pass 26/35 and you're in. No Morse code required anymore!</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Get your callsign &amp; upgrade</h3>
+            <p>The FCC issues your unique callsign in days. Later, upgrade to
+               General and Amateur Extra for more privileges.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="callout">
+        <strong>73 and good luck!</strong> ("73" is ham shorthand for "best
+        regards.") Welcome to the world's greatest technical hobby.
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with 📻 and ⚡ for curious minds. This is an educational fan site,
+       not affiliated with any regulatory body.</p>
+    <p class="footer-sign">— de a friendly Elmer · <span id="year"></span></p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
