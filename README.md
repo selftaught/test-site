@@ -8,3 +8,5 @@ A dockerized static HTML site about amateur radio.
 docker build -t test-site .
 docker run -d --rm -p 8080:8080 test-site
 ```
+
+Then open http://localhost:8080 in your browser.
