@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ham Radio Hangout</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #08111f;
+      --panel: rgba(19, 35, 59, 0.9);
+      --accent: #ffd166;
+      --accent-2: #7bdff2;
+      --text: #f8fbff;
+      --muted: #bdd2eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, #1d3a63, var(--bg) 60%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    .hero,
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(123, 223, 242, 0.25);
+      border-radius: 18px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero {
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 209, 102, 0.18);
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      max-width: 42rem;
+      margin: 0 auto 1rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      color: var(--accent-2);
+      font-size: 1.35rem;
+    }
+
+    .callout {
+      margin-top: 1.5rem;
+      padding: 1.2rem 1.4rem;
+      border-left: 4px solid var(--accent);
+      background: rgba(255, 209, 102, 0.08);
+      border-radius: 12px;
+      color: var(--text);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    strong {
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="badge">CQ CQ Fun Ahead</div>
+      <h1>What Is a Ham (Amateur Radio Operator)?</h1>
+      <p>
+        A <strong>ham</strong> is an amateur radio operator: someone who uses radios to talk across town,
+        across the country, or even around the world just for the joy of learning, helping, and making
+        connections.
+      </p>
+      <p>
+        Think of it as a mashup of science lab, community club, and global adventure powered by antennas,
+        curiosity, and a friendly shout of "CQ!"
+      </p>
+    </section>
+
+    <section aria-labelledby="highlights-heading">
+      <h2 id="highlights-heading" class="sr-only">Amateur radio highlights</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Why “Ham”?</h3>
+          <p>
+            The nickname has been around for generations. Today it simply means a licensed amateur radio
+            operator: a person exploring radio as a hobby, a skill, and a service to others.
+          </p>
+        </article>
+        <article class="card">
+          <h3>What Hams Do</h3>
+          <p>
+            Hams chat on local repeaters, bounce signals off the atmosphere, send digital messages, build
+            antennas, contact the International Space Station, and learn electronics along the way.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Why It Matters</h3>
+          <p>
+            Amateur radio is fun on an ordinary day and useful on a hard day. Operators often support events,
+            public service, and emergency communication when regular systems become unreliable.
+          </p>
+        </article>
+        <article class="card">
+          <h3>How to Start</h3>
+          <p>
+            Study for an entry-level license, visit a local radio club, and get on the air. The hobby welcomes
+            experimenters, tinkerers, makers, and anyone who likes meeting people through technology.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div class="callout">
+      <strong>Fun fact:</strong> A handheld radio can open the door to a giant hobby. One day you might be
+      chatting with a nearby operator, and the next you could be collecting contacts from all over the map.
+    </div>
+
+    <footer>
+      Built as a lightweight static site, ready to serve from a container.
+    </footer>
+  </main>
+</body>
+</html>
